@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blog page</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    
+.prev-Button  {
+  font-size: 13px;
+  padding: 6px 7px;
+  background-color: #e6e0e0;
+  border: solid black 1px;
+  border-radius: 10%;
+  cursor: pointer;
+  margin-left: 38pc;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.next-Button {
+  font-size: 13px;
+  padding: 6px 7px;
+  background-color: rgb(228, 228, 228);
+  border: solid black 1px;
+  border-radius: 10%;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.card {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    max-width: 800px;
+    height: 100%;
+    margin: 15px auto;
+    box-shadow: 2px 4px 4px 2px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    background-color: #ccc;
+    width: 100%;
+    overflow: hidden;
+}
+
+.card-text {
+    padding: 0px 4px 4px 9px;
+    flex: 1;
+    font-size: 100%;
+    font-family: "Poppins", sans-serif;
+}
+
+.card-text p {
+  font-size: 13.7px;
+  font-family: "Poppins", sans-serif;
+}
+
+.card-text h2 {
+    font-size: 20px;
+}
+
+.card-text h3 {
+  font-size: 2opx;
+}
+
+.card-image {
+    width: 52%;
+    height: 60%;
+    object-fit: cover;
+    padding: 0%;
+}
+
+body {
+    margin:0 0 0 0;
+    background-color: rgb(248, 248, 217);
+    background-image: url(https://izaankhan0.github.io/bulking/Media/bg-5.png);
+}
+
+.container  {
+    display: inline-block;
+}
+
+.container-image {
+    width: 100%; 
+    height: auto;
+    display: block;
+    object-fit: cover; /* Ensures the image scales and crops */
+    object-position: center; /* Centers the image */
+}
+
+.overlay h3 {
+  font-family: "Poppins", sans-serif;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    color: #ffa300;
+}
+
+.overlay-text {
+  color: white;
+  font-size: 3.5pc; 
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
+  margin: 0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.blog-item{
+  padding-left: 10px;
+}
+/* Entrance Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  }
+  
+  .card, .button-container {
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  button {
+    transition: transform 0.2s ease, background-color 0.3s ease; 
+    /*The transform animation will be faster, while the background-color change will take a bit longer */
+  }
+  
+  button:hover {
+    transform: scale(1.05);
+    background-color: #444; 
+  }
+  
+  /* Overlay Text Entrance Animation */
+  .overlay-text {
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+
+@media (max-width: 768px) {
+    .card {
+      flex-direction: column; /* Stack the image and text vertically */
+      align-items: flex-start;
+      flex: 1 1 calc(100% - 30px);
+    }
+    
+    .card-image {
+      padding-right: 0;
+      width: 100%;
+    }
+  
+    .card-text {
+      text-align: left;
+    }
+    .container-image {
+      width: 100%; 
+    }
+        
+    .overlay-text {
+      font-size: 2pc; 
+    }
+    .back-page button {
+      font-size: 30px;
+      padding: 6px 7px;
+      background-color: #000000;
+      border: solid black 1px;
+      border-radius: 50%;
+      cursor: pointer;
+      margin:auto;
+      justify-content: center;
+    }
+  }
+
+@media (max-width: 375px) {
+  .card {
+    flex-direction: column; /* Stack the image and text vertically */
+    align-items: flex-start;
+    margin-top: 25px;
+  }
+  .container-image{
+    height:100vw;
+    margin-bottom: 20px;
+  }
+  
+}
+
+@media (max-width: 425px) {
+  .card {
+    flex-direction: column; /* Stack the image and text vertically */
+    align-items: flex-start;
+    margin-top: 15px;
+  }
+  .card-text{
+    font-size: 14px;
+    padding: 10px;
+  }
+  .page-container{
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+  
+  .container-image{
+    height:100vw;
+    margin-bottom: 20px;
+  }
+
+  .blog-item {
+    padding: 10px; /* Further reduce padding for very small screens */
+  }
+}
+
+.blog-carousel {
+    margin: 15px auto;
+    gap: 15px;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.blog-slider {
+  display: flex;
+  margin: 15px auto;
+  transition: transform 0.5s ease;
+}
+
+
+.blog-item {
+  min-width: 100%; /* Ensure each blog takes the full width of the container */
+  box-sizing: border-box;
+  padding: 10px; /* Adjust padding as needed */
+}
+
+*{
+  box-sizing: border-box;
+}
+  /* Header Styling */
+header {
+  font-family: Poppins;
+  width: 100%;
+  margin: auto;
+  margin-top: 0;
+  padding: 15px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000; /* If you want to change the nav bar background color or op[acity do it here*/
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+header .logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #eee;
+  cursor: pointer;
+  position: sticky;
+  transition: color 0.3s ease;
+}
+
+header .logo:hover {
+  color: #f5a623; /* Highlight color */
+}
+
+header .menu {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+header .menu li a {
+  color: #eee;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 10px 15px;
+  transition: background 0.3s, color 0.3s;
+  border-radius: 5px;
+}
+
+header .menu li a:hover {
+  background-color: #f5a623;
+  color: #333;
+}
+
+header .van {
+  display: none;
+  position: fixed;
+  height:100vh;
+  width:50vw;
+  background-color: #ffa300;
+  left:-1000px;
+  z-index:20;
+  transition: 0.5s ease;
+  margin-top: 32px;
+  top: 0; /* Added to make it start at the top */
+}
+
+
+
+header .van ul{
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  margin-top: 40px;
+  list-style: none;
+}
+header .van ul li{
+  margin: 15px 0px;
+}
+header .van ul li a{
+  color: black;
+  margin-top: 40px;
+  text-decoration: none;
+  list-style: none;
+  font-size: 1em;
+  font-weight: 600;
+  transition:100ms ease;
+}
+
+header .burger {
+  display: none; /* Ensure it's visible */
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 40px;
+  width: 50px;
+  position: fixed;
+  right: 20px;
+  top:13px;
+
+}
+
+header .burger .line {
+  background-color: #ffa300;
+  display: block;
+  border-radius: 10px;
+  width: 100%;
+  height: 6px;
+}
+.line{
+  background-color: #ffa300;
+  display:block;
+  border-radius: 10px;
+  width:100%;
+  height:6px;
+}
+header .van.show{
+  left:0px;
+}
+
+/* ADDING BURGER ANIMATION XD */
+
+.line.alter-1 {
+  transform: rotate(45deg) translateY(16px);
+  transition: transform 0.3s ease;
+}
+
+.line.alter-2 {
+  opacity: 0; /* Hide the middle line */
+  transition: opacity 0.3s ease;
+}
+
+.line.alter-3 {
+  transform: rotate(-45deg) translateY(-16px);
+  transition: transform 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+  header .menu {
+      display: none; /* Hide the desktop menu */
+  }
+
+  header .burger {
+      display: flex; /* Ensure the burger menu is visible */
+  }
+
+  header .van {
+      display: block; /* Show the off-screen menu */
+  }
+  /* header {
+    display: n;
+  } */
+}
+
+</style>
+<body>
+    
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Name</div>
+            <div class="burger" onclick="switch1();">
+                <div class="line line-1"></div>
+                <div class="line line-2"></div>
+                <div class="line line-3"></div>
+            </div>            
+            <van class="van"> <!-- Off-Screen Menu-->
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Menu</a></li>
+                    <li><a href="">Team</a></li>
+                    <li><a href="">Blog</a></li>
+                    <li><a href="">Offer</a></li>
+                    <li><a href="">Gallery</a></li>
+                    <li><a href="Reservation.html">Reservation</a></li>
+                </ul>
+            </van>
+            <nav>
+                <ul class="menu">
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Menu</a></li>
+                    <li><a href="">Team</a></li>
+                    <li><a href="">Blog</a></li>
+                    <li><a href="">Offer</a></li>
+                    <li><a href="">Gallery</a></li>
+                    <li><a href="Reservation.html">Reservation</a></li>
+                </ul>
+            </nav>
+        </header> 
+        <img src="mainpage2.jpg" alt="blog" class="container-image">
+        <div class="overlay">
+            <h3 class="overlay-text">Discover Our Culinary Narratives</h3> 
+        </div>
+
+    </div>
+
+    <div class="blog-carousel"> 
+        <div class="blog-slider">
+          <div class="blog-item">  
+            <div class="page-container">
+                <div class="card">
+                    <div class="card-text">
+                        <h2>Behind the Scenes: Crafting Culinary Artistry</h2>
+                        <p>
+                            Our dedicated team turns premium ingredients into 
+                            unforgettable dining experiences. Here’s a glimpse into the artistry that defines our cuisine.
+                        </p>
+                        <h3>The Creative Vision</h3>    
+                        <p>Our team, full of passionate culinary artists, each bringing unique expertise to the kitchen. Each dish tells a 
+                            story, capturing the essence of flavors.
+                        </p>    
+                        <h3>The Art of Preparation</h3>
+                        <p>Our chefs blend classical training with modern innovation to create unique 
+                            presentations. From delicious pasta to the perfect steak, each dish is prepared with expertise.
+                        </p>    
+                        <h3>Plating as an Art Form</h3>
+                        <p>Our chefs treat the plate as a canvas, thoughtfully arranging ingredients to delight both the palate and eyes. 
+                            The balance of color and structure creates a mesmerising experience.</p>
+                        <p>Blog by George Smith | October 12, 2024</p>
+                    </div>
+                    <img src="Chefs2.jpg" alt="Example Image" class="card-image">
+                </div>
+            </div>
+          </div>
+          <div class="blog-item">
+            <div class="page-container">
+                <div class="card">
+                    <div class="card-text">
+                        <h2>An Ode to Taste and Elegance: The Art of Fine Dining at Our Restaurant</h2>
+                        <p>When was the last time your senses were immersed in an experience beyond just a meal-where dining became art? 
+                            This image offers a glimpse of what makes our 
+                            dining unique: the soft glow of candlelight contrasting with sunlight, highlighting dishes that enchant both the eye 
+                            and palate.
+                        </p>
+                        <h3>The Symphony of Ambiance</h3>
+                        <p>Dining at [Restaurant Name] is a theater of moments. 
+                            Whether you're here for a special 
+                            occasion or simply indulging in the luxury of fine dining, we invite you to partake in a sensory narrative where 
+                            every course builds anticipation for the next.
+                        </p>
+                        <h3>Curated Dishes that Evoke Emotion</h3>    
+                        <p>The medley presented a perfectly seared fish over a bed of vegetables, and tender cuts of short rib 
+                            nestled within grains-echoes a story of global inspiration. Our chefs 
+                            take pride in blending traditional techniques with inventive twists, ensuring every bite captures a memory worth savoring.
+                        </p>    
+                        <p>Blog by Tehreem Khan | June 20, 2024</p>
+                    </div>
+                    <img src="dish.jpg" alt="Example Image" class="card-image">
+                </div>        
+          </div>
+          </div>
+          <div class="blog-item"><div class="page-container">
+            <div class="card">
+                <div class="card-text">
+                    <h2>The Perfect Night Out: How to Plan Your Visit to [Restaurant Name]</h2>
+                    <p>Planning a night out? 
+                        Whether it's for a celebration, or simply a delightful evening, [Restaurant] is 
+                        here to offer an unforgettable experience. Here's your guide to making the most of your visit with us!</p>
+                        
+                    <h3>Reservations: Secure Your Table Early</h3>
+                    <p>Ensure a seamless evening: Make a reservation as [Restaurant] can get busy, especially on weekends. 
+                        Booking ahead guarantees you a spot allowing you to request special seating, 
+                        like a cozy corner.</p> 
+                 
+                    <h3>The Main Event: Ordering Your Meal</h3>
+                    <p> Our menu is a reflection of [Restaurant Name]’s commitment to fresh ingredients and authentic flavors. 
+                        We pride ourselves on our chef’s specialties.
+                    </p>   
+                    <h3>Capture the Moment: Social Media and Memories</h3>
+                    <p>Don’t forget to take photos to remember the night! Our restaurant’s interior offers picture-perfect spots,
+                         from the well-decorated main dining area to cozy corners with unique art pieces. </p>
+                    </p>
+                <p>Blog by Emma John | April 28, 2024</p>
+                </div>
+                <img src="restaurant1.jpg" alt="Example Image" class="card-image">
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="prev-Button" id="prevBtn">Previous</button>
+      <button class="next-Button" id="nextBtn">Next</button>
+      
+</body>
+</html>
+
+<script>
+    let flag = false;
+    let nav = document.querySelector('.van')
+    let line = document.querySelectorAll('.line')
+    function switch1() {
+      if (flag == false) {
+        setTimeout(() => {
+          nav.classList.add('show');
+        }, 100);
+        line[0].classList.add('alter-1');
+        line[1].classList.add('alter-2');
+        line[2].classList.add('alter-3');
+        flag = true;
+      }
+      else if (flag == true) {
+        setTimeout(() => {
+          nav.classList.remove('show');
+        }, 100);
+        line[0].classList.remove('alter-1');
+        line[1].classList.remove('alter-2');
+        line[2].classList.remove('alter-3');
+        flag = false;
+      }
+    }
+    window.addEventListener("load", function() {
+      const preloader = document.querySelector(".wrapper");
+      preloader.style.transition = "opacity 0.5s ease";
+      preloader.style.opacity = "0";
+    
+      setTimeout(() => {
+        preloader.style.display = "none";
+      }, 500);
+    });
+    
+    let currentIndex = 0;
+    const blogSlider = document.querySelector('.blog-slider');
+    const blogItems = document.querySelectorAll('.blog-item');
+    
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (currentIndex < blogItems.length - 1) {
+        currentIndex++;
+        blogSlider.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
+    });
+    
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        blogSlider.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
+    });
+    </script>
